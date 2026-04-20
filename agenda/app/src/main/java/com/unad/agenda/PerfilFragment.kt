@@ -12,7 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
-import com.google.android.material.button.MaterialButton
+import android.widget.Button
 import java.io.File
 
 // Objeto singleton: guarda el perfil en memoria mientras la app esté abierta
@@ -74,7 +74,7 @@ class PerfilFragment : Fragment() {
 
         ivFoto.setOnClickListener { mostrarOpcionesFoto() }
 
-        view.findViewById<MaterialButton>(R.id.btnGuardar).setOnClickListener {
+        view.findViewById<Button>(R.id.btnGuardar).setOnClickListener {
             guardarDatos()
         }
     }
