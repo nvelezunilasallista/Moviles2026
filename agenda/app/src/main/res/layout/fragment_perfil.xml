@@ -50,9 +50,44 @@
             android:id="@+id/etTelefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="12dp"
             android:hint="Teléfono"
             android:inputType="phone" />
+
+        <!-- Campos de ubicación (solo lectura, se llenan con el botón) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/etLatitud"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:hint="Latitud"
+                android:enabled="false"
+                android:text="0.0" />
+
+            <EditText
+                android:id="@+id/etLongitud"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Longitud"
+                android:enabled="false"
+                android:text="0.0" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnObtenerUbicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Obtener Ubicación GPS"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
         <Button
             android:id="@+id/btnGuardar"
