@@ -104,20 +104,39 @@ class PerfilFragment : Fragment() {
     }
 
     private fun cargarDatos() {
-        etNombre.setText(PerfilData.nombre)
-        etCorreo.setText(PerfilData.correo)
-        etTelefono.setText(PerfilData.telefono)
-        etLatitud.setText(PerfilData.latitud.toString())
-        etLongitud.setText(PerfilData.longitud.toString())
-        if (PerfilData.fotoUri != null) {
-            ivFoto.setImageURI(PerfilData.fotoUri)
+        // Intentar cargar desde la base de datos al abrir la app
+        val db = PerfilDatabase(requireContext())
+        val hayDatosGuardados = db.cargar(PerfilData)
+
+        if (hayDatosGuardados) {
+            // llenar los campos con lo que se encuentra en la BBDD
+            etNombre.setText(PerfilData.nombre)
+            etCorreo.setText(PerfilData.correo)
+            etTelefono.setText(PerfilData.telefono)
+            etLatitud.setText(PerfilData.latitud.toString())
+            etLongitud.setText(PerfilData.longitud.toString())
+            if (PerfilData.fotoUri != null) {
+                ivFoto.setImageURI(PerfilData.fotoUri)
+            }
         }
     }
 
     private fun guardarDatos() {
+        // Actualizar el objeto en memoria
         PerfilData.nombre   = etNombre.text.toString().trim()
         PerfilData.correo   = etCorreo.text.toString().trim()
         PerfilData.telefono = etTelefono.text.toString().trim()
+
+        // Persistir en SQLite para que se conserve al cerrar la app
+        PerfilDatabase(requireContext()).guardar(
+            PerfilData.nombre,
+            PerfilData.correo,
+            PerfilData.telefono,
+            PerfilData.fotoUri?.toString(),
+            PerfilData.latitud,
+            PerfilData.longitud
+        )
+
         Toast.makeText(requireContext(), "Perfil guardado", Toast.LENGTH_SHORT).show()
     }
 
