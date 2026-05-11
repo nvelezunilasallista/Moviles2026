@@ -2,6 +2,7 @@ package com.unad.agenda
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -100,6 +101,19 @@ class PerfilFragment : Fragment() {
 
         view.findViewById<Button>(R.id.btnGuardar).setOnClickListener {
             guardarDatos()
+        }
+
+        view.findViewById<Button>(R.id.btnCerrarSesion).setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Cerrar sesión")
+                .setMessage("¿Estás seguro que deseas salir?")
+                .setPositiveButton("Sí") { _, _ ->
+                    SessionManager(requireContext()).cerrarSesion()
+                    startActivity(Intent(requireContext(), LoginActivity::class.java))
+                    requireActivity().finish()
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
         }
     }
 

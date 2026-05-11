@@ -95,6 +95,15 @@
             android:layout_height="wrap_content"
             android:text="Guardar perfil" />
 
+        <Button
+            android:id="@+id/btnCerrarSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Cerrar sesión"
+            android:backgroundTint="#D32F2F"
+            style="@style/Widget.MaterialComponents.Button" />
+
     </LinearLayout>
 
 </ScrollView>

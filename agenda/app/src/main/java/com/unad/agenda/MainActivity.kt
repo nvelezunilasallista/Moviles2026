@@ -1,5 +1,6 @@
 package com.unad.agenda
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +13,14 @@ import com.google.android.material.tabs.TabLayoutMediator
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //
+
+        // Si el usuario no está logueado, enviarlo a LoginActivity
+        if (!SessionManager(this).estaLogueado()) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return
+        }
+
         setContentView(R.layout.activity_main); // Enlaza con el archivo acticity_main.xml
 
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
